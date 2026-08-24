@@ -7,7 +7,7 @@
         <div class="flex items-center gap-2 mb-1">
           <div class="w-1 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-violet-600"></div>
           <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight">
-            <%%= @<%= singular_table_name %>.to_s.presence || <%= class_name %>.model_name.human %>
+            <%%= "#{<%= class_name %>.model_name.human} ID: #{@<%= singular_table_name %>.id}" %>
           </h1>
         </div>
         <p class="text-gray-500 text-sm ml-3">Detalhes do(a) registro</p>

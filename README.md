@@ -34,17 +34,29 @@ Tudo isso, **sem adicionar nenhuma dependência JavaScript extra**. Todo o layou
 
 *(Adicione suas screenshots abaixo)*
 
-### Listagem de Registros (Desktop)
-![Listagem Desktop - Placeholder](docs/images/list-desktop.png)
+### Index (Mobile)
+![Index (Mobile)](images/mobile_index.jpg)
 
-### Listagem de Registros (Mobile)
-![Listagem Mobile - Placeholder](docs/images/list-mobile.png)
+### Show (Mobile)
+![Show (Mobile)](images/mobile_show.jpg)
 
-### Criação / Edição de Registro
-![Formulário - Placeholder](docs/images/form.png)
+### Edit (Mobile)
+![Edit (Mobile)](images/mobile_edit.jpg)
 
-### Detalhes do Registro (Show)
-![Detalhes - Placeholder](docs/images/show.png)
+### New (Mobile)
+![New (Mobile)](images/mobile_new.jpg)
+
+### Index (Desktop)
+![Index (Desktop)](images/desktop_index.jpg)
+
+### Show (Desktop)
+![Show (Desktop)](images/desktop_show.jpg)
+
+### Edit (Desktop)
+![Edit (Desktop)](images/desktop_edit.jpg)
+
+### New (Desktop)
+![New (Desktop)](images/desktop_new.jpg)
 
 ---
 
