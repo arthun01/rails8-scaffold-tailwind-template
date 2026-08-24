@@ -1,0 +1,22 @@
+<div class="min-h-screen bg-gray-50 py-6 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-2xl mx-auto">
+    <div class="mb-8">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900">
+        Editar <%%= <%= class_name %>.model_name.human.downcase %>
+      </h1>
+      <p class="text-gray-600 text-sm mt-2">Atualize os campos necessários</p>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-md p-6 sm:p-8">
+      <%%= render "form", <%= singular_table_name %>: @<%= singular_table_name %> %>
+    </div>
+
+    <div class="mt-8">
+      <%%= link_to @<%= singular_table_name %>,
+          class: "inline-flex items-center gap-2 bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l14 0" /><path d="M5 12l6 6" /><path d="M5 12l6 -6" /></svg>
+        Voltar
+      <%% end %>
+    </div>
+  </div>
+</div>
