@@ -109,6 +109,35 @@ bin/rails generate scaffold Product name:string description:text price:decimal a
 
 ---
 
+## 📦 O que este template cobre (e o que não cobre)
+
+Este template tem um **escopo intencional e bem definido**: melhorar a aparência do CRUD gerado pelo scaffold. Ele **não é** um starter kit completo.
+
+### ✅ Incluso
+
+| Feature | Descrição |
+|---|---|
+| `index` | Tabela responsiva (desktop) + cards (mobile) + empty state |
+| `show` | Página de detalhes com layout limpo |
+| `new` / `edit` | Páginas de formulário estilizadas |
+| `_form` | Formulário inteligente adaptado ao tipo de dado |
+| `application.html.erb` | Layout base com Navbar glassmorphism e Inter font |
+| `_flash.html.erb` | Toast notifications animadas para avisos do Rails |
+
+### ❌ Fora do escopo
+
+| Feature | Por quê não está aqui |
+|---|---|
+| 🔍 **Filtros e buscas** | Depende de gems como `Ransack` e lógica customizada no controller |
+| 📄 **Paginação** | Requer `Kaminari` ou `Pagy` — configuração específica de cada projeto |
+| 🔐 **Login / Autenticação** | Depende de `Devise` ou do Authentication Concern nativo do Rails 8 |
+| 📊 **Dashboard / gráficos** | Lógica e dados específicos de cada aplicação |
+| 🛡️ **Permissões / Roles** | Requer `CanCanCan`, `Pundit` ou solução customizada |
+
+> **Resumindo:** rode `rails generate scaffold`, copie os templates e já terá um CRUD bonito e pronto. Para funcionalidades extras, você as adiciona normalmente sobre essa base estilizada.
+
+---
+
 ## 🎨 Helpers Globais Opcionais
 
 Para aproveitar ao máximo o layout e manter a consistência fora do scaffold, recomendamos adicionar esses métodos ao seu arquivo `app/helpers/application_helper.rb`. Eles permitem que você utilize rapidamente Badges de status:
