@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html class="h-full bg-gray-50">
+  <head>
+    <title><%= content_for(:title) || "App Name" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="h-full font-sans antialiased text-gray-900 bg-gray-50 flex flex-col">
+    <!-- Navbar simples -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <%= link_to root_path, class: "font-bold text-xl text-blue-600 flex items-center gap-2" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5"></path>
+              <path d="M12 12l8 -4.5"></path>
+              <path d="M12 12l0 9"></path>
+              <path d="M12 12l-8 -4.5"></path>
+            </svg>
+            AppName
+          <% end %>
+        </div>
+        <nav class="hidden md:flex gap-6">
+          <%= link_to "Início", root_path, class: "text-sm font-medium text-gray-600 hover:text-blue-600 transition" %>
+          <!-- Adicione seus links aqui -->
+        </nav>
+      </div>
+    </header>
+
+    <!-- Área de Flash Messages -->
+    <div id="flash-messages" class="fixed top-20 right-4 z-50 flex flex-col gap-2">
+      <%= render "layouts/flash" %>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-1 w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+      <%= yield %>
+    </main>
+
+    <!-- Footer Simples -->
+    <footer class="bg-white border-t border-gray-200 mt-auto">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-center">
+        <p class="text-sm text-gray-500">© <%= Date.current.year %> AppName. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+  </body>
+</html>

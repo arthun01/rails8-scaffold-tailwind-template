@@ -15,6 +15,7 @@ Este projeto resolve isso ao **sobrescrever esses templates padrão**. Ao clonar
 - Alertas e mensagens de erro bonitos.
 - "Empty States" amigáveis (quando não há registros no banco de dados).
 - Ícones em SVG inline profissionais (via [Tabler Icons](https://github.com/tabler/tabler-icons)), sem a necessidade de emojis básicos.
+- **Bônus:** Um layout base completo (`application.html.erb` e `_flash.html.erb`) contendo Navbar responsiva e sistema de Toasts para os avisos do Rails!
 
 Tudo isso, **sem adicionar nenhuma dependência JavaScript extra**. Todo o layout é baseado em utilitários do Tailwind!
 
@@ -71,7 +72,12 @@ A ideia principal é que você possa copiar a estrutura deste repositório e col
                    └── show.html.erb
    ```
 
-3. **Pronto!** O Rails automaticamente vai passar a ler esses arquivos toda vez que você gerar um novo scaffold. Não é necessária nenhuma outra configuração extra.
+3. **(Opcional) Utilize o Layout Base e Flashes:**
+   Para garantir que as Views do Scaffold fiquem com a aparência ideal, você pode copiar a estrutura principal que deixamos na pasta `base_layout/`:
+   - Copie `base_layout/application.html.erb` para `app/views/layouts/application.html.erb` (Layout com Navbar e Fundo já estilizado).
+   - Copie `base_layout/_flash.html.erb` para `app/views/layouts/_flash.html.erb` (Notificações em Toasts bonitos!).
+
+4. **Pronto!** O Rails automaticamente vai passar a ler esses arquivos toda vez que você gerar um novo scaffold. Não é necessária nenhuma outra configuração extra.
 
 ---
 
