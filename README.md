@@ -32,8 +32,6 @@ Tudo isso, **sem adicionar nenhuma dependência JavaScript extra**. Todo o layou
 
 ## 📸 Imagens de Demonstração (Screenshots)
 
-*(Adicione suas screenshots abaixo)*
-
 ### Index (Mobile)
 ![Index (Mobile)](images/mobile_index.jpg)
 
