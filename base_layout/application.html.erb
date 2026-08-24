@@ -27,7 +27,7 @@
     <header class="bg-white shadow-sm sticky top-0 z-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div class="flex items-center gap-4">
-          <%= link_to root_path, class: "font-bold text-xl text-blue-600 flex items-center gap-2" do %>
+          <%= link_to "/", class: "font-bold text-xl text-blue-600 flex items-center gap-2" do %>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5"></path>
@@ -39,7 +39,7 @@
           <% end %>
         </div>
         <nav class="hidden md:flex gap-6">
-          <%= link_to "Início", root_path, class: "text-sm font-medium text-gray-600 hover:text-blue-600 transition" %>
+          <%= link_to "Início", "/", class: "text-sm font-medium text-gray-600 hover:text-blue-600 transition" %>
           <!-- Adicione seus links aqui -->
         </nav>
       </div>
