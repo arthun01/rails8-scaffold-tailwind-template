@@ -1,177 +1,192 @@
-# 🎨 Rails 8 Scaffold Template com Tailwind CSS
+# Rails 8 Scaffold Template · Tailwind CSS
 
-Bem-vindo ao **Rails 8 Scaffold Template com Tailwind CSS**! Este é um template pronto para uso que substitui a interface padrão gerada pelo comando `rails generate scaffold` do Ruby on Rails. Ele traz uma abordagem moderna, focada em design mobile-first, acessibilidade e ótima experiência do usuário (UX), integrando-se perfeitamente ao Tailwind CSS.
-
----
-
-## 🚀 O que é este projeto?
-
-Quando você roda um gerador de scaffold no Rails (`rails generate scaffold Post title:string`), ele cria as *views* (arquivos HTML) utilizando templates padrão que costumam ser bem básicos e sem estilização. 
-
-Este projeto resolve isso ao **sobrescrever esses templates padrão**. Ao clonar e usar este template no seu projeto Rails, todos os scaffolds gerados automaticamente já virão com:
-- Um design premium estilizado com Tailwind CSS.
-- Tabelas responsivas (tabelas completas em desktop, cards adaptáveis no mobile).
-- Formulários elegantes com feedback visual (focus rings coloridos) inteligentes e adaptados ao tipo de dado.
-- Alertas e mensagens de erro bonitos.
-- "Empty States" amigáveis (quando não há registros no banco de dados).
-- Ícones em SVG inline profissionais (via [Tabler Icons](https://github.com/tabler/tabler-icons)), sem a necessidade de emojis básicos.
-- **Bônus:** Um layout base completo (`application.html.erb` e `_flash.html.erb`) contendo Navbar responsiva e sistema de Toasts para os avisos do Rails!
-
-Tudo isso, **sem adicionar nenhuma dependência JavaScript extra**. Todo o layout é baseado em utilitários do Tailwind!
+Template pronto para sobrescrever as views padrão do `rails generate scaffold`, trazendo um design premium, responsivo e consistente sem precisar estilizar nada na mão.
 
 ---
 
-## 🛠 Stack Utilizada
+## O que é este projeto?
 
-- **Framework:** Ruby on Rails 8
-- **Estilização:** Tailwind CSS (via `tailwindcss-rails`)
-- **Ícones:** SVG Inline ([Tabler Icons](https://tabler-icons.io/))
-- **Templates:** ERB (`lib/templates/erb/scaffold/`)
+Quando você roda `rails generate scaffold Post title:string`, o Rails gera views HTML completamente sem estilização. Este template **substitui esses arquivos automaticamente** com um design moderno baseado em Tailwind CSS — e você continua trabalhando da mesma forma que sempre trabalhou.
 
----
+### O que vem incluso
 
-## 📸 Imagens de Demonstração (Screenshots)
+| Arquivo | O que resolve |
+|---|---|
+| `lib/templates/erb/scaffold/index` | Tabela (desktop) + cards (mobile) + empty state |
+| `lib/templates/erb/scaffold/show` | Detalhes do registro em layout limpo |
+| `lib/templates/erb/scaffold/new` e `edit` | Páginas de formulário estilizadas |
+| `lib/templates/erb/scaffold/_form` | Formulário que adapta o campo ao tipo de dado |
+| `base_layout/application.html.erb` | Layout com Navbar glassmorphism + fonte Inter |
+| `base_layout/_flash.html.erb` | Toasts animados para as mensagens do Rails |
+| `auth_templates/sessions/new` | Tela de login |
+| `auth_templates/passwords/new` | Tela de "Esqueci a senha" |
+| `auth_templates/passwords/edit` | Tela de redefinição de senha |
 
-### Index (Mobile)
-![Index (Mobile)](images/mobile_index.jpg)
+### O que **não** está incluso
 
-### Show (Mobile)
-![Show (Mobile)](images/mobile_show.jpg)
-
-### Edit (Mobile)
-![Edit (Mobile)](images/mobile_edit.jpg)
-
-### New (Mobile)
-![New (Mobile)](images/mobile_new.jpg)
-
-### Index (Desktop)
-![Index (Desktop)](images/desktop_index.jpg)
-
-### Show (Desktop)
-![Show (Desktop)](images/desktop_show.jpg)
-
-### Edit (Desktop)
-![Edit (Desktop)](images/desktop_edit.jpg)
-
-### New (Desktop)
-![New (Desktop)](images/desktop_new.jpg)
+| Feature | Por quê |
+|---|---|
+| 🔍 Filtros e buscas | Requer `Ransack` + lógica de controller |
+| 📄 Paginação | Requer `Kaminari` ou `Pagy` |
+| 📊 Dashboard / gráficos | Lógica específica de cada projeto |
+| 🛡️ Permissões / Roles | Requer `CanCanCan`, `Pundit` etc. |
 
 ---
 
-## ⚙️ Como Instalar e Utilizar
+## Stack
 
-A ideia principal é que você possa copiar a estrutura deste repositório e colar diretamente dentro de qualquer novo projeto Rails 8 seu.
-
-1. **Clone este repositório:**
-   ```bash
-   git clone https://github.com/arthun01/scaffold-template-tailwind.git
-   ```
-   
-2. **Copie a pasta `lib/templates` para o seu projeto Rails:**
-   Dentro da raiz do seu projeto Rails (que precisa estar configurado com Tailwind), certifique-se de que a estrutura a seguir existe:
-   ```text
-   meu-projeto-rails/
-   └── lib/
-       └── templates/
-           └── erb/
-               └── scaffold/
-                   ├── _form.html.erb
-                   ├── edit.html.erb
-                   ├── index.html.erb
-                   ├── new.html.erb
-                   └── show.html.erb
-   ```
-
-3. **(Opcional) Utilize o Layout Base e Flashes:**
-   Para garantir que as Views do Scaffold fiquem com a aparência ideal, você pode copiar a estrutura principal que deixamos na pasta `base_layout/`:
-   - Copie `base_layout/application.html.erb` para `app/views/layouts/application.html.erb` (Layout com Navbar e Fundo já estilizado).
-   - Copie `base_layout/_flash.html.erb` para `app/views/layouts/_flash.html.erb` (Notificações em Toasts bonitos!).
-
-4. **Pronto!** O Rails automaticamente vai passar a ler esses arquivos toda vez que você gerar um novo scaffold. Não é necessária nenhuma outra configuração extra.
+- **Ruby on Rails 8**
+- **Tailwind CSS** · via `tailwindcss-rails`
+- **Ícones** · SVGs inline da [Tabler Icons](https://tabler-icons.io/)
+- **Fonte** · [Inter](https://fonts.google.com/specimen/Inter) via Google Fonts
 
 ---
 
-## 📖 Como Usar no Dia a Dia
+## Screenshots
 
-Você não precisa mudar nada na forma como você trabalha com o Rails. Os templates criados na pasta `lib/templates/` são lidos automaticamente de maneira silenciosa.
+### Desktop
 
-### 1. Criando um Novo Recurso (Scaffold)
-Basta rodar o comando padrão do Rails. Por exemplo, criando um painel para Produtos:
+| Index | Show |
+|---|---|
+| ![Index Desktop](images/desktop_index.jpg) | ![Show Desktop](images/desktop_show.jpg) |
+
+| New | Edit |
+|---|---|
+| ![New Desktop](images/desktop_new.jpg) | ![Edit Desktop](images/desktop_edit.jpg) |
+
+### Mobile
+
+<table>
+  <tr>
+    <td align="center"><b>Index</b></td>
+    <td align="center"><b>Show</b></td>
+    <td align="center"><b>New</b></td>
+    <td align="center"><b>Edit</b></td>
+  </tr>
+  <tr>
+    <td><img src="images/mobile_index.jpg" width="180"/></td>
+    <td><img src="images/mobile_show.jpg" width="180"/></td>
+    <td><img src="images/mobile_new.jpg" width="180"/></td>
+    <td><img src="images/mobile_edit.jpg" width="180"/></td>
+  </tr>
+</table>
+
+---
+
+## Como Instalar
+
+### 1. Clone este repositório
+
+```bash
+git clone https://github.com/arthun01/rails8-scaffold-tailwind-template.git
+```
+
+### 2. Copie os templates do scaffold para seu projeto Rails
+
+Copie a pasta `templates/` para dentro de `lib/` no seu projeto:
+
+```
+meu-projeto-rails/
+└── lib/
+    └── templates/
+        └── erb/
+            └── scaffold/
+                ├── _form.html.erb
+                ├── edit.html.erb
+                ├── index.html.erb
+                ├── new.html.erb
+                └── show.html.erb
+```
+
+A partir daí, todo `rails generate scaffold` já usará o novo visual automaticamente.
+
+### 3. (Opcional) Layout Base
+
+Para que o visual seja completo desde o início, copie o layout base para o seu projeto:
+
+```bash
+cp base_layout/application.html.erb app/views/layouts/application.html.erb
+cp base_layout/_flash.html.erb app/views/layouts/_flash.html.erb
+```
+
+> **Importante:** O `application.html.erb` inclui a fonte Inter via Google Fonts. Troque `AppName` pelo nome da sua aplicação nos dois arquivos.
+
+---
+
+## Como Usar no Dia a Dia
+
+Nada muda no seu fluxo de trabalho. Basta rodar o scaffold normalmente:
 
 ```bash
 bin/rails generate scaffold Product name:string description:text price:decimal active:boolean
-```
-
-**O que vai acontecer?** O Rails vai gerar os models, controllers e rotas padrão. Porém, ao gerar os arquivos `.html.erb`, ele usará nossos templates e criará páginas belíssimas, usando paletas de cores padrão, prontas para ir à produção.
-
-Não esqueça de rodar as migrações:
-```bash
 bin/rails db:migrate
 ```
 
-### 2. Substituindo um Scaffold Antigo
-Se você já tinha um projeto existente com scaffolds antigos, pode forçar o Rails a regenerar apenas as views rodando o mesmo comando com a flag `--force`:
+O Rails vai encontrar os templates em `lib/templates/erb/scaffold/` e gerar as views com o novo design automaticamente.
+
+### Substituindo views de um scaffold já existente
 
 ```bash
-bin/rails generate scaffold Product name:string description:text price:decimal active:boolean --force
+bin/rails generate scaffold Product name:string description:text --force
 ```
-*(Cuidado: a flag `--force` reescreve os arquivos originais e isso removerá lógicas customizadas inseridas anteriormente nas Views ou Controllers)*
+
+> ⚠️ A flag `--force` sobrescreve os arquivos existentes. Use com cuidado se já houver lógica customizada nas views ou controllers.
 
 ---
 
-## 📦 O que este template cobre (e o que não cobre)
+## Templates de Autenticação
 
-Este template tem um **escopo intencional e bem definido**: melhorar a aparência do CRUD gerado pelo scaffold. Ele **não é** um starter kit completo.
+O Rails 8 tem um gerador nativo de autenticação. Os templates estilizados ficam na pasta `auth_templates/`.
 
-### ✅ Incluso
+### Telas incluídas
 
-| Feature | Descrição |
+| Tela | Arquivo |
 |---|---|
-| `index` | Tabela responsiva (desktop) + cards (mobile) + empty state |
-| `show` | Página de detalhes com layout limpo |
-| `new` / `edit` | Páginas de formulário estilizadas |
-| `_form` | Formulário inteligente adaptado ao tipo de dado |
-| `application.html.erb` | Layout base com Navbar glassmorphism e Inter font |
-| `_flash.html.erb` | Toast notifications animadas para avisos do Rails |
+| Login | `auth_templates/sessions/new.html.erb` |
+| Esqueci a senha | `auth_templates/passwords/new.html.erb` |
+| Redefinição de senha | `auth_templates/passwords/edit.html.erb` |
 
-### ❌ Fora do escopo
+### Como instalar
 
-| Feature | Por quê não está aqui |
-|---|---|
-| 🔍 **Filtros e buscas** | Depende de gems como `Ransack` e lógica customizada no controller |
-| 📄 **Paginação** | Requer `Kaminari` ou `Pagy` — configuração específica de cada projeto |
-| 🔐 **Login / Autenticação** | Depende de `Devise` ou do Authentication Concern nativo do Rails 8 |
-| 📊 **Dashboard / gráficos** | Lógica e dados específicos de cada aplicação |
-| 🛡️ **Permissões / Roles** | Requer `CanCanCan`, `Pundit` ou solução customizada |
+```bash
+# 1. Rode o gerador nativo
+bin/rails generate authentication
+bin/rails db:migrate
 
-> **Resumindo:** rode `rails generate scaffold`, copie os templates e já terá um CRUD bonito e pronto. Para funcionalidades extras, você as adiciona normalmente sobre essa base estilizada.
+# 2. Substitua pelas versões estilizadas
+cp auth_templates/sessions/new.html.erb app/views/sessions/new.html.erb
+cp auth_templates/passwords/new.html.erb app/views/passwords/new.html.erb
+cp auth_templates/passwords/edit.html.erb app/views/passwords/edit.html.erb
+```
+
+> **Nota:** O Rails 8 Authentication não gera tela de cadastro. Se precisar de uma, crie-a manualmente seguindo o padrão visual dos arquivos em `auth_templates/`.
 
 ---
 
-## 🎨 Helpers Globais Opcionais
+## Helpers Globais Opcionais
 
-Para aproveitar ao máximo o layout e manter a consistência fora do scaffold, recomendamos adicionar esses métodos ao seu arquivo `app/helpers/application_helper.rb`. Eles permitem que você utilize rapidamente Badges de status:
+Adicione ao seu `app/helpers/application_helper.rb` para ter badges de status disponíveis em qualquer view:
 
 ```ruby
 module ApplicationHelper
   def badge_success(text)
-    content_tag :span, text, class: "inline-block px-3 py-1 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800"
+    content_tag :span, text, class: "inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200"
   end
 
   def badge_warning(text)
-    content_tag :span, text, class: "inline-block px-3 py-1 text-xs font-semibold rounded-full bg-amber-100 text-amber-800"
+    content_tag :span, text, class: "inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-full bg-amber-50 text-amber-700 ring-1 ring-amber-200"
   end
 
   def badge_danger(text)
-    content_tag :span, text, class: "inline-block px-3 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800"
+    content_tag :span, text, class: "inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-full bg-red-50 text-red-700 ring-1 ring-red-200"
   end
 end
 ```
 
 ---
 
-## 👨‍💻 Autor
+## Autor
 
-Criado e mantido por **Arthur Ramos Vieira**
+Feito por **Arthur Ramos Vieira** · [@arthun01](https://github.com/arthun01)
 
-Sinta-se à vontade para fazer um fork, mandar pull requests ou abrir issues. Aproveite para agilizar a criação dos seus próximos MVPs e sistemas internos usando a potência e a beleza do **Rails + Tailwind**!
+Pull requests e issues são bem-vindos!

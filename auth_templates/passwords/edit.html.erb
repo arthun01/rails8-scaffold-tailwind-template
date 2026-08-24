@@ -1,0 +1,54 @@
+<div class="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/30 to-violet-50/20 flex items-center justify-center px-4 py-12">
+  <div class="w-full max-w-md">
+
+    <!-- Brand -->
+    <div class="flex flex-col items-center mb-8">
+      <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-200 mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 13l4 4l10 -10"/>
+        </svg>
+      </div>
+      <h1 class="text-2xl font-bold text-gray-900 tracking-tight">Criar nova senha</h1>
+      <p class="text-gray-500 text-sm mt-1 text-center max-w-xs">
+        Escolha uma senha forte para proteger sua conta.
+      </p>
+    </div>
+
+    <!-- Card -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-7 sm:p-8">
+      <%= form_with url: password_path(params[:token]), method: :put, class: "space-y-5" do |form| %>
+        <%= form.hidden_field :token, value: params[:token] %>
+
+        <!-- Nova senha -->
+        <div class="space-y-1.5">
+          <%= form.label :password, "Nova senha", class: "block text-sm font-semibold text-gray-700" %>
+          <%= form.password_field :password,
+              autofocus: true,
+              autocomplete: "new-password",
+              placeholder: "Mínimo 8 caracteres",
+              class: "w-full px-4 py-3 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-400 transition" %>
+        </div>
+
+        <!-- Confirmar senha -->
+        <div class="space-y-1.5">
+          <%= form.label :password_confirmation, "Confirmar nova senha", class: "block text-sm font-semibold text-gray-700" %>
+          <%= form.password_field :password_confirmation,
+              autocomplete: "new-password",
+              placeholder: "Repita a senha",
+              class: "w-full px-4 py-3 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-400 transition" %>
+        </div>
+
+        <!-- Dica de segurança -->
+        <div class="flex items-start gap-2.5 p-3 bg-indigo-50 border border-indigo-100 rounded-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-indigo-500 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 16h.01"/><circle cx="12" cy="12" r="9"/></svg>
+          <p class="text-xs text-indigo-700">Use pelo menos 8 caracteres combinando letras maiúsculas, minúsculas e números.</p>
+        </div>
+
+        <!-- Submit -->
+        <%= form.submit "Redefinir senha",
+            class: "w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-semibold py-3 px-5 rounded-xl transition-all duration-200 shadow-md shadow-indigo-200 hover:shadow-lg hover:shadow-indigo-300 cursor-pointer text-sm" %>
+
+      <% end %>
+    </div>
+  </div>
+</div>
