@@ -1,21 +1,28 @@
-<div class="min-h-screen bg-gray-50 py-6 px-4 sm:px-6 lg:px-8">
+<div class="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/30 to-violet-50/20 py-8 px-4 sm:px-6 lg:px-8">
   <div class="max-w-2xl mx-auto">
+
+    <!-- Header -->
     <div class="mb-8">
-      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900">
-        Editar <%%= <%= class_name %>.model_name.human.downcase %>
-      </h1>
-      <p class="text-gray-600 text-sm mt-2">Atualize os campos necessários</p>
+      <div class="flex items-center gap-2 mb-1">
+        <div class="w-1 h-6 rounded-full bg-gradient-to-b from-amber-400 to-orange-500"></div>
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight">
+          Editar <%%= <%= class_name %>.model_name.human.downcase %>
+        </h1>
+      </div>
+      <p class="text-gray-500 text-sm ml-3 mt-1">Atualize os campos necessários e salve as alterações</p>
     </div>
 
-    <div class="bg-white rounded-lg shadow-md p-6 sm:p-8">
+    <!-- Card do Formulário -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8">
       <%%= render "form", <%= singular_table_name %>: @<%= singular_table_name %> %>
     </div>
 
-    <div class="mt-8">
+    <!-- Voltar -->
+    <div class="mt-6">
       <%%= link_to @<%= singular_table_name %>,
-          class: "inline-flex items-center gap-2 bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition" do %>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l14 0" /><path d="M5 12l6 6" /><path d="M5 12l6 -6" /></svg>
-        Voltar
+          class: "inline-flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-indigo-600 transition-colors" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l14 0"/><path d="M5 12l6 6"/><path d="M5 12l6 -6"/></svg>
+        Voltar para detalhes
       <%% end %>
     </div>
   </div>

@@ -1,80 +1,80 @@
-<div class="min-h-screen bg-gray-50 py-6 px-4 sm:px-6 lg:px-8">
+<div class="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/30 to-violet-50/20 py-8 px-4 sm:px-6 lg:px-8">
   <div class="max-w-7xl mx-auto">
+
+    <!-- Header -->
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
       <div>
-        <h1 class="text-3xl sm:text-4xl font-bold text-gray-900">
-          <%%= <%= class_name %>.model_name.human(count: 2) %>
-        </h1>
-        <p class="text-gray-600 text-sm mt-1">Gerencie todos os registros de <%= plural_table_name %></p>
+        <div class="flex items-center gap-2 mb-1">
+          <div class="w-1 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-violet-600"></div>
+          <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight">
+            <%%= <%= class_name %>.model_name.human(count: 2) %>
+          </h1>
+        </div>
+        <p class="text-gray-500 text-sm ml-3">Gerencie todos os registros de <%= plural_table_name %></p>
       </div>
       <div class="w-full sm:w-auto">
-        <%%= link_to new_<%= singular_table_name %>_path, 
-            class: "w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-3 px-6 rounded-lg transition duration-200 shadow-md hover:shadow-lg" do %>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
+        <%%= link_to new_<%= singular_table_name %>_path,
+            class: "w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-semibold py-2.5 px-5 rounded-xl transition-all duration-200 shadow-md shadow-indigo-200 hover:shadow-lg hover:shadow-indigo-300 hover:-translate-y-px" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5l0 14"/><path d="M5 12l14 0"/></svg>
           Novo(a)
         <%% end %>
       </div>
     </div>
 
-    <div class="hidden md:flex gap-3 mb-6">
-      <div class="flex-1">
-        <input type="text" placeholder="Pesquisar..." 
-               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-      </div>
-    </div>
+    <!-- Card principal -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
 
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <!-- Desktop Table -->
       <div class="hidden md:block overflow-x-auto">
         <table class="w-full">
           <thead>
-            <tr class="bg-gray-100 border-b border-gray-200">
+            <tr class="border-b border-gray-100 bg-gray-50/80">
               <% attributes.reject { |attr| attr.name == 'id' || attr.attachment? }.each do |attribute| -%>
-                <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                <th class="px-6 py-3.5 text-left text-xs font-semibold text-gray-500 uppercase tracking-widest">
                   <%%= <%= class_name %>.human_attribute_name(:<%= attribute.name %>) %>
                 </th>
               <% end -%>
-              <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                Ações
-              </th>
+              <th class="px-6 py-3.5 text-right text-xs font-semibold text-gray-500 uppercase tracking-widest">Ações</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-gray-200">
+          <tbody class="divide-y divide-gray-50">
             <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
-              <tr class="hover:bg-blue-50 transition">
+              <tr class="hover:bg-indigo-50/30 transition-colors group">
                 <% attributes.reject { |attr| attr.name == 'id' || attr.attachment? }.first(4).each do |attribute| -%>
-                  <td class="px-6 py-4 text-sm text-gray-900">
+                  <td class="px-6 py-4 text-sm text-gray-700">
                     <% if attribute.field_type == :boolean -%>
-                      <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full 
-                        <%% if <%= singular_table_name %>.<%= attribute.name %> %>
-                          bg-emerald-100 text-emerald-800
-                        <%% else %>
-                          bg-gray-100 text-gray-600
-                        <%% end %>">
-                        <%%= <%= singular_table_name %>.<%= attribute.name %> ? '✓ Sim' : '✗ Não' %>
-                      </span>
+                      <%% if <%= singular_table_name %>.<%= attribute.name %> %>
+                        <span class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200">
+                          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Sim
+                        </span>
+                      <%% else %>
+                        <span class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-full bg-gray-50 text-gray-500 ring-1 ring-gray-200">
+                          <span class="w-1.5 h-1.5 rounded-full bg-gray-400"></span> Não
+                        </span>
+                      <%% end %>
                     <% elsif attribute.field_type == :text -%>
-                      <%%= truncate(<%= singular_table_name %>.<%= attribute.name %>.to_s, length: 50) %>
+                      <span class="line-clamp-1"><%%= truncate(<%= singular_table_name %>.<%= attribute.name %>.to_s, length: 50) %></span>
                     <% else -%>
                       <%%= <%= singular_table_name %>.<%= attribute.name %> %>
                     <% end -%>
                   </td>
                 <% end -%>
-                <td class="px-6 py-4 text-sm font-medium">
-                  <div class="flex items-center gap-3">
-                    <%%= link_to <%= singular_table_name %>, 
-                        class: "inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-semibold transition", title: "Ver" do %>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+                <td class="px-6 py-4">
+                  <div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <%%= link_to <%= singular_table_name %>,
+                        class: "inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition-colors" do %>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"/></svg>
                       Ver
                     <%% end %>
-                    <%%= link_to edit_<%= singular_table_name %>_path(<%= singular_table_name %>), 
-                        class: "inline-flex items-center gap-1 text-amber-600 hover:text-amber-800 font-semibold transition", title: "Editar" do %>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /></svg>
+                    <%%= link_to edit_<%= singular_table_name %>_path(<%= singular_table_name %>),
+                        class: "inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-amber-600 bg-amber-50 hover:bg-amber-100 rounded-lg transition-colors" do %>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"/><path d="M13.5 6.5l4 4"/></svg>
                       Editar
                     <%% end %>
-                    <%%= link_to <%= singular_table_name %>, method: :delete, 
-                        data: { turbo_method: :delete, turbo_confirm: "Tem certeza?" }, 
-                        class: "inline-flex items-center gap-1 text-red-600 hover:text-red-800 font-semibold transition", title: "Deletar" do %>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
+                    <%%= link_to <%= singular_table_name %>,
+                        data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja apagar este registro?" },
+                        class: "inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-red-500 bg-red-50 hover:bg-red-100 rounded-lg transition-colors" do %>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l16 0"/><path d="M10 11l0 6"/><path d="M14 11l0 6"/><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"/><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"/></svg>
                     <%% end %>
                   </div>
                 </td>
@@ -84,27 +84,29 @@
         </table>
       </div>
 
-      <div class="md:hidden divide-y divide-gray-200">
+      <!-- Mobile Cards -->
+      <div class="md:hidden divide-y divide-gray-50">
         <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
-          <div class="p-4 hover:bg-blue-50 transition">
-            <div class="space-y-3">
+          <div class="p-4 hover:bg-indigo-50/30 transition-colors">
+            <div class="space-y-2.5 mb-4">
               <% attributes.reject { |attr| attr.name == 'id' || attr.attachment? }.first(3).each do |attribute| -%>
                 <div>
-                  <p class="text-xs font-semibold text-gray-600 uppercase">
+                  <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-0.5">
                     <%%= <%= class_name %>.human_attribute_name(:<%= attribute.name %>) %>
                   </p>
-                  <p class="text-sm text-gray-900 mt-1">
+                  <p class="text-sm text-gray-800 font-medium">
                     <% if attribute.field_type == :boolean -%>
-                      <span class="inline-block px-2 py-1 text-xs font-semibold rounded 
-                        <%% if <%= singular_table_name %>.<%= attribute.name %> %>
-                          bg-emerald-100 text-emerald-800
-                        <%% else %>
-                          bg-gray-100 text-gray-600
-                        <%% end %>">
-                        <%%= <%= singular_table_name %>.<%= attribute.name %> ? '✓ Sim' : '✗ Não' %>
-                      </span>
+                      <%% if <%= singular_table_name %>.<%= attribute.name %> %>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-emerald-50 text-emerald-700">
+                          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Sim
+                        </span>
+                      <%% else %>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-gray-100 text-gray-500">
+                          <span class="w-1.5 h-1.5 rounded-full bg-gray-400"></span> Não
+                        </span>
+                      <%% end %>
                     <% elsif attribute.field_type == :text -%>
-                      <%%= truncate(<%= singular_table_name %>.<%= attribute.name %>.to_s, length: 40) %>
+                      <%%= truncate(<%= singular_table_name %>.<%= attribute.name %>.to_s, length: 60) %>
                     <% else -%>
                       <%%= <%= singular_table_name %>.<%= attribute.name %> %>
                     <% end -%>
@@ -112,15 +114,15 @@
                 </div>
               <% end -%>
             </div>
-            <div class="flex gap-2 mt-4 pt-4 border-t border-gray-100">
-              <%%= link_to <%= singular_table_name %>, 
-                  class: "flex-1 inline-flex justify-center items-center gap-1 bg-blue-600 text-white py-2 rounded font-semibold text-sm hover:bg-blue-700 transition" do %>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+            <div class="flex gap-2 pt-3 border-t border-gray-100">
+              <%%= link_to <%= singular_table_name %>,
+                  class: "flex-1 inline-flex justify-center items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-xl text-sm font-semibold transition-colors" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"/></svg>
                 Ver
               <%% end %>
-              <%%= link_to edit_<%= singular_table_name %>_path(<%= singular_table_name %>), 
-                  class: "flex-1 inline-flex justify-center items-center gap-1 bg-amber-600 text-white py-2 rounded font-semibold text-sm hover:bg-amber-700 transition" do %>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /></svg>
+              <%%= link_to edit_<%= singular_table_name %>_path(<%= singular_table_name %>),
+                  class: "flex-1 inline-flex justify-center items-center gap-1.5 bg-amber-500 hover:bg-amber-600 text-white py-2 rounded-xl text-sm font-semibold transition-colors" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"/><path d="M13.5 6.5l4 4"/></svg>
                 Editar
               <%% end %>
             </div>
@@ -128,15 +130,18 @@
         <%% end %>
       </div>
 
+      <!-- Empty State -->
       <%% if @<%= plural_table_name %>.empty? %>
-        <div class="text-center py-12">
-          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-16 w-16 text-gray-400 mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12" /><path d="M4 13h3l3 3h4l3 -3h3" /></svg>
-          <h3 class="text-lg font-semibold text-gray-900 mb-2">Nenhum(a) <%= singular_table_name %> encontrado(a)</h3>
-          <p class="text-gray-600 mb-6">Comece criando um novo registro</p>
-          <%%= link_to new_<%= singular_table_name %>_path, 
-              class: "inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition" do %>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
-            Criar Novo(a)
+        <div class="flex flex-col items-center justify-center py-20 px-4 text-center">
+          <div class="w-20 h-20 rounded-2xl bg-indigo-50 flex items-center justify-center mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12"/><path d="M4 13h3l3 3h4l3 -3h3"/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-1">Nenhum registro encontrado</h3>
+          <p class="text-gray-500 text-sm mb-6 max-w-xs">Comece adicionando o primeiro registro de <%= singular_table_name %></p>
+          <%%= link_to new_<%= singular_table_name %>_path,
+              class: "inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-semibold py-2.5 px-6 rounded-xl transition-all shadow-md shadow-indigo-200" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5l0 14"/><path d="M5 12l14 0"/></svg>
+            Criar Primeiro Registro
           <%% end %>
         </div>
       <%% end %>

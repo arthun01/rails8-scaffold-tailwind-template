@@ -1,45 +1,46 @@
 <% flash.each do |key, message| %>
-  <% 
-    color_classes = case key.to_sym
+  <%
+    type = key.to_sym
+    styles = case type
     when :notice, :success
-      "bg-emerald-50 text-emerald-800 border-emerald-200"
+      { bg: "from-emerald-50 to-green-50", border: "border-emerald-200", dot: "bg-emerald-500", text: "text-emerald-800", subtext: "text-emerald-600" }
     when :alert, :error
-      "bg-red-50 text-red-800 border-red-200"
+      { bg: "from-red-50 to-rose-50", border: "border-red-200", dot: "bg-red-500", text: "text-red-800", subtext: "text-red-600" }
     when :warning
-      "bg-amber-50 text-amber-800 border-amber-200"
+      { bg: "from-amber-50 to-yellow-50", border: "border-amber-200", dot: "bg-amber-500", text: "text-amber-800", subtext: "text-amber-600" }
     else
-      "bg-blue-50 text-blue-800 border-blue-200"
+      { bg: "from-indigo-50 to-violet-50", border: "border-indigo-200", dot: "bg-indigo-500", text: "text-indigo-800", subtext: "text-indigo-600" }
     end
-    
-    icon = case key.to_sym
+
+    icon_svg = case type
     when :notice, :success
-      '<svg class="w-5 h-5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>'
+      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>'
     when :alert, :error
-      '<svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>'
+      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>'
     when :warning
-      '<svg class="w-5 h-5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>'
+      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>'
     else
-      '<svg class="w-5 h-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>'
+      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>'
     end
   %>
-
-  <div class="flex items-center gap-3 p-4 mb-2 border rounded-lg shadow-sm <%= color_classes %> animate-fade-in-down" role="alert">
-    <%= icon.html_safe %>
-    <p class="font-medium text-sm"><%= message %></p>
-    <button type="button" class="ml-auto text-current opacity-70 hover:opacity-100 transition" onclick="this.parentElement.remove()">
-      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+  <div class="anim-fade flex items-start gap-3 p-4 rounded-2xl border bg-gradient-to-br <%= styles[:bg] %> <%= styles[:border] %> shadow-lg shadow-black/5"
+       role="alert"
+       data-controller="flash"
+       data-action="animationend->flash#remove">
+    <div class="flex-shrink-0 w-8 h-8 rounded-full <%= styles[:dot] %> flex items-center justify-center">
+      <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <%= icon_svg.html_safe %>
+      </svg>
+    </div>
+    <div class="flex-1 min-w-0 pt-0.5">
+      <p class="text-sm font-semibold <%= styles[:text] %>"><%= message %></p>
+    </div>
+    <button type="button"
+            class="flex-shrink-0 p-1 rounded-lg <%= styles[:subtext] %> hover:bg-black/5 transition"
+            onclick="this.closest('[role=alert]').remove()">
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
       </svg>
     </button>
   </div>
 <% end %>
-
-<style>
-  @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .animate-fade-in-down {
-    animation: fadeInDown 0.3s ease-out forwards;
-  }
-</style>
